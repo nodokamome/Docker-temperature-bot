@@ -1,0 +1,17 @@
+version: '3.5'
+services:
+  node:
+    build: .
+    container_name: temperature-bot
+    tty: true
+    restart: always
+    volumes:
+      - ./bot:/bot
+    command: [sh, -c, cd bin & ./bin/hubot -a slack]
+    networks: 
+      - app-network    # アプリネットワーク
+
+# アプリネットワークと接続
+networks:
+  app-network:
+    name: app_network
